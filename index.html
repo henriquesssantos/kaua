@@ -1,0 +1,925 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakup to Breakthrough — The First Case Closure Program for Divorced Women</title>
+  <meta name="description" content="10 video lessons built on the Empty Room Test — the 3 questions that show you what you'd choose if nobody was watching. $97 launch price. 7-day money-back guarantee.">
+  <!-- IMPORTANTE: troque todos os href="#" pelo link do seu checkout antes de publicar -->
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+    /* ============================================================
+       BREAKUP TO BREAKTHROUGH — Landing Page CSS
+       Conceito visual: "The Verdict" — dossiê editorial / Case Closure
+       Mobile-first | Breakpoints: 768px (tablet) e 1024px (desktop)
+       ============================================================ */
+
+    /* 1. DESIGN TOKENS */
+    :root {
+      --paper-cream: #F6F1E7;
+      --ink: #191713;
+      --deep-pine: #1F3D33;
+      --stamp-red: #BE3B2A;
+      --stamp-red-dark: #A53224;
+      --stamp-red-light: #E9897A;
+      --warm-taupe: #9C8F80;
+      --card-bg: #FFFDF8;
+      --border-soft: rgba(25, 23, 19, 0.10);
+      --cream-soft: rgba(246, 241, 231, 0.78);
+
+      --font-head: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', Helvetica, Arial, sans-serif;
+      --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+      --container: 1140px;
+      --text-col: 680px;
+      --section-gap: 56px;
+
+      --shadow-card: 0 8px 24px rgba(25, 23, 19, 0.08);
+      --shadow-btn: 0 8px 20px rgba(190, 59, 42, 0.25);
+    }
+
+    /* 2. RESET / BASE */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background-color: var(--paper-cream);
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 76px; /* espaço da barra de CTA fixa no mobile */
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    strong { font-weight: 700; }
+    s { color: var(--warm-taupe); }
+    em { color: var(--warm-taupe); } /* voz interna da compradora */
+
+    /* 3. TIPOGRAFIA GLOBAL */
+    h1, h2, h3 { font-family: var(--font-head); line-height: 1.1; }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--deep-pine);
+      margin-bottom: 24px;
+    }
+
+    .section-title--light { color: var(--paper-cream); }
+    .section-title--center { text-align: center; }
+
+    .section-intro { margin-bottom: 32px; }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--stamp-red);
+      margin-bottom: 16px;
+    }
+
+    /* 4. LAYOUT GLOBAL */
+    .container {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .container--narrow { max-width: calc(var(--text-col) + 40px); }
+
+    section { padding-block: var(--section-gap); }
+
+    .section-cta { text-align: center; margin-top: 40px; }
+
+    .microcopy { font-size: 13px; color: var(--warm-taupe); margin-top: 12px; }
+
+    .disclaimer { font-size: 12px; color: var(--warm-taupe); margin-top: 24px; }
+
+    /* 5. BOTÕES */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 700;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn--primary {
+      background-color: var(--stamp-red);
+      color: var(--paper-cream);
+      box-shadow: var(--shadow-btn);
+    }
+
+    .btn--large { font-size: 17px; padding: 18px 36px; }
+    .btn--small { font-size: 13px; padding: 10px 18px; }
+
+    .btn--primary:hover,
+    .btn--primary:focus-visible {
+      background-color: var(--stamp-red-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn--primary:focus-visible {
+      outline: 3px solid var(--deep-pine);
+      outline-offset: 2px;
+    }
+
+    .btn--secondary {
+      border: 2px solid var(--deep-pine);
+      color: var(--deep-pine);
+      background: transparent;
+    }
+
+    .btn--secondary:hover { background: rgba(31, 61, 51, 0.08); }
+
+    /* 6. BARRA DE CTA FIXA (mobile, aparece após 600px de scroll) */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px;
+      background: var(--paper-cream);
+      border-top: 1px solid var(--border-soft);
+      box-shadow: 0 -8px 24px rgba(25, 23, 19, 0.12);
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .sticky-cta.is-visible {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .sticky-cta__info { display: flex; flex-direction: column; }
+
+    .sticky-cta__label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--warm-taupe);
+    }
+
+    .sticky-cta__price { font-size: 14px; font-weight: 700; }
+
+    /* 7. HERO */
+    .hero { padding-block: 48px; }
+
+    .hero__grid { display: grid; gap: 40px; }
+
+    .hero__title { font-size: 34px; margin-bottom: 20px; }
+
+    .hero__subtitle { margin-bottom: 24px; max-width: 54ch; }
+
+    .price-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--paper-cream);
+      background: var(--ink);
+      padding: 8px 14px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    .price-badge s { margin-right: 6px; }
+    .price-badge strong { color: var(--stamp-red-light); }
+
+    .hero__media { position: relative; }
+
+    .hero__image-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 12px;
+      background: linear-gradient(160deg, #E8DFCE 0%, #D8CDB6 60%, #C9BCA2 100%);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* Ao inserir a foto real, troque o placeholder por:
+       <img src="hero.jpg" alt="..." class="hero__img">
+       .hero__img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; } */
+
+    /* 8. CARIMBO "CASE CLOSED" (CSS puro) */
+    .stamp {
+      position: absolute;
+      right: -8px;
+      bottom: 24px;
+      transform: rotate(-8deg);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: var(--stamp-red);
+      border: 3px double var(--stamp-red);
+      padding: 10px 16px;
+      border-radius: 4px;
+      background: rgba(246, 241, 231, 0.88);
+    }
+
+    .stamp--watermark {
+      right: 0;
+      bottom: 0;
+      font-size: 26px;
+      color: var(--paper-cream);
+      border-color: var(--paper-cream);
+      background: transparent;
+      opacity: 0.08;
+    }
+
+    /* 9. PROVA BREVE (depoimento cedo) */
+    .early-proof { padding-block: 0 var(--section-gap); }
+
+    .early-proof__quote {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.4;
+      color: var(--deep-pine);
+      border-left: 4px solid var(--stamp-red);
+      padding-left: 20px;
+    }
+
+    .early-proof__author {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-style: normal;
+      color: var(--warm-taupe);
+      margin-top: 12px;
+    }
+
+    /* 10. PROBLEMA (fundo Ink + textura de papel pautado 4%) */
+    .problem {
+      background-color: var(--ink);
+      color: var(--paper-cream);
+      background-image: repeating-linear-gradient(
+        transparent 0 31px,
+        rgba(246, 241, 231, 0.04) 31px 32px
+      );
+    }
+
+    .problem .section-intro { color: var(--cream-soft); }
+
+    .pain {
+      border-left: 3px solid var(--warm-taupe);
+      padding-left: 20px;
+      margin-bottom: 28px;
+    }
+
+    .pain__label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--stamp-red-light);
+      margin-bottom: 8px;
+    }
+
+    .pain p { color: var(--cream-soft); }
+    .pain p strong { color: var(--paper-cream); }
+    .pain em { color: var(--warm-taupe); }
+
+    .problem__agitate {
+      border-left: 4px solid var(--stamp-red);
+      padding-left: 20px;
+      margin: 36px 0 20px;
+    }
+
+    .problem__bridge { color: var(--cream-soft); }
+
+    /* 11. SOLUÇÃO */
+    .solution p { margin-bottom: 18px; max-width: var(--text-col); }
+    .solution strong { color: var(--deep-pine); }
+
+    /* 12. PRODUTO POR DENTRO + COMO USAR */
+    .inside__grid {
+      display: grid;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .inside__card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .inside__card > p {
+      font-size: 14px;
+      color: var(--warm-taupe);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .inside__preview {
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inside__preview::after {
+      content: attr(aria-label);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--warm-taupe);
+      text-align: center;
+      padding: 12px;
+    }
+
+    .inside__preview--video    { background: linear-gradient(140deg, #EFE8D8, #DFD5BF); }
+    .inside__preview--workbook { background: linear-gradient(140deg, #F0EBE0, #E2D9C6); }
+    .inside__preview--criteria { background: linear-gradient(140deg, #EDE7DA, #DCD2BC); }
+
+    .inside__how {
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: var(--shadow-card);
+      padding: 28px;
+    }
+
+    .inside__how-title { font-size: 22px; color: var(--deep-pine); margin-bottom: 16px; }
+
+    .inside__steps { padding-left: 20px; }
+    .inside__steps li { margin-bottom: 10px; }
+
+    /* 13. VALUE STACK */
+    .stack {
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: var(--shadow-card);
+      padding: 28px;
+    }
+
+    .stack--main { margin-bottom: 24px; }
+
+    .stack__label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--stamp-red);
+      margin-bottom: 10px;
+    }
+
+    .stack__title { font-size: 20px; margin-bottom: 10px; }
+
+    .stack__value {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--warm-taupe);
+      margin-top: 12px;
+    }
+
+    .stack__grid { display: grid; gap: 24px; }
+
+    .stack__total { text-align: center; margin: 40px 0 8px; }
+
+    .stack__old { font-size: 18px; color: var(--warm-taupe); }
+
+    .stack__now { font-size: 20px; margin-top: 6px; }
+    .stack__now strong {
+      font-family: var(--font-head);
+      font-size: 34px;
+      color: var(--stamp-red);
+    }
+
+    .stack__justify {
+      max-width: var(--text-col);
+      margin: 16px auto 0;
+      text-align: center;
+    }
+
+    /* 14. PROVA SOCIAL */
+    .proof__grid { display: grid; gap: 24px; margin-bottom: 40px; }
+
+    .proof__card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      box-shadow: var(--shadow-card);
+      padding: 28px;
+    }
+
+    .proof__card blockquote {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
+
+    .proof__card figcaption {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--warm-taupe);
+    }
+
+    .proof__science {
+      border-left: 4px solid var(--deep-pine);
+      padding-left: 20px;
+      max-width: var(--text-col);
+    }
+
+    .proof__science p + p { margin-top: 12px; }
+
+    /* 15. GARANTIA (fundo Deep Pine + selo circular) */
+    .guarantee {
+      background-color: var(--deep-pine);
+      color: var(--paper-cream);
+    }
+
+    .guarantee p { color: var(--cream-soft); margin-bottom: 16px; }
+    .guarantee strong { color: var(--paper-cream); }
+    .guarantee .disclaimer { color: rgba(246, 241, 231, 0.6); }
+
+    .guarantee__seal {
+      width: 150px;
+      height: 150px;
+      margin: 32px auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--paper-cream);
+      border: 2px solid var(--paper-cream);
+      outline: 2px solid var(--paper-cream);
+      outline-offset: 5px;
+      border-radius: 50%;
+      transform: rotate(-6deg);
+    }
+
+    /* 16. URGÊNCIA */
+    .urgency { text-align: center; }
+
+    .urgency p {
+      max-width: 60ch;
+      margin-inline: auto;
+      margin-bottom: 16px;
+    }
+
+    /* 17. FAQ (accordion nativo <details>, sem JavaScript) */
+    .faq__item { border-bottom: 1px solid var(--border-soft); }
+
+    .faq__item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      padding: 20px 0;
+    }
+
+    .faq__item summary::-webkit-details-marker { display: none; }
+
+    .faq__item summary::after {
+      content: "+";
+      font-family: var(--font-body);
+      font-size: 24px;
+      color: var(--stamp-red);
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .faq__item[open] summary::after { content: "−"; }
+
+    .faq__item p { padding-bottom: 20px; color: rgba(25, 23, 19, 0.8); }
+
+    /* 18. CTA FINAL (fundo Ink + carimbo em marca d'água) */
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      background-color: var(--ink);
+      color: var(--paper-cream);
+      text-align: center;
+    }
+
+    .final-cta p { color: var(--cream-soft); }
+    .final-cta strong { color: var(--paper-cream); }
+    .final-cta__oneliner { font-size: 18px; margin-bottom: 8px; }
+
+    /* 19. RODAPÉ */
+    .footer {
+      background-color: var(--ink);
+      border-top: 1px solid rgba(246, 241, 231, 0.12);
+      padding-block: 32px;
+      font-size: 13px;
+      color: rgba(246, 241, 231, 0.6);
+    }
+
+    .footer a { color: var(--warm-taupe); }
+
+    /* 20. ANIMAÇÕES */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn, .sticky-cta { transition: none; }
+    }
+
+    /* 21. RESPONSIVIDADE
+       Base = mobile (<768px). Tablet e desktop abaixo. */
+
+    @media (min-width: 768px) {
+      :root { --section-gap: 72px; }
+
+      body { font-size: 18px; padding-bottom: 0; }
+
+      .container { padding-inline: 32px; }
+
+      .hero { padding-block: 64px; }
+      .hero__title { font-size: 44px; }
+
+      .section-title { font-size: 34px; }
+
+      .sticky-cta { display: none; } /* barra fixa existe apenas no mobile */
+    }
+
+    @media (min-width: 1024px) {
+      :root { --section-gap: 96px; }
+
+      .hero { padding-block: 80px; }
+
+      .hero__grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+      }
+
+      .hero__title { font-size: 56px; }
+      .section-title { font-size: 40px; }
+
+      .inside__grid { grid-template-columns: repeat(3, 1fr); }
+      .stack__grid { grid-template-columns: repeat(3, 1fr); }
+      .proof__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE CTA FIXA (mobile — aparece após o scroll) -->
+  <div class="sticky-cta">
+    <div class="sticky-cta__info">
+      <span class="sticky-cta__label">Launch price</span>
+      <span class="sticky-cta__price">$97 — goes to $297</span>
+    </div>
+    <a href="#" class="btn btn--primary btn--small">Get instant access</a>
+  </div>
+
+  <!-- BLOCO 1 — HERO -->
+  <header class="hero">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <p class="kicker">A Case Closure Program</p>
+        <h1 class="hero__title">You're letting a man who already left decide your next home, your next job and your next love.</h1>
+        <p class="hero__subtitle"><strong>Breakup to Breakthrough</strong> is the first Case Closure program for divorced and separated women — 10 video lessons built around one mechanism: <strong>the Empty Room Test</strong>, the 3 questions that show you what you'd choose if nobody was watching. Including him.</p>
+        <p class="price-badge">LAUNCH PRICE <s>$297</s> <strong>$97</strong></p>
+        <a href="#" class="btn btn--primary btn--large">GET INSTANT ACCESS — $97</a>
+        <p class="microcopy">Launch price · Goes to <strong>$297</strong> after launch · 7-day money-back guarantee</p>
+      </div>
+      <div class="hero__media">
+        <!-- Imagem: mulher confiante sozinha em luz de janela OU sala vazia com uma cadeira -->
+        <!-- Placeholder de imagem — substituir por <img src="hero.jpg" alt="..."> -->
+        <div class="hero__image-placeholder" role="img" aria-label="A woman standing alone in a bright, empty room"></div>
+        <div class="stamp" aria-hidden="true">CASE CLOSED</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BLOCO 2 — PROVA BREVE (depoimento cedo) -->
+  <section class="early-proof" aria-label="Early testimonial">
+    <div class="container container--narrow">
+      <blockquote class="early-proof__quote">
+        "I chose the apartment in 6 days. Without calling anyone to 'think about it.' First big decision I made without hearing his answer first."
+        <footer class="early-proof__author">— Danielle R., 37 · Atlanta, GA</footer>
+      </blockquote>
+      <!-- Depoimento ILUSTRATIVO (persona do PDF). Substituir por depoimento real antes de escalar tráfego pago -->
+    </div>
+  </section>
+
+  <!-- BLOCO 3 — PROBLEMA -->
+  <section class="problem">
+    <div class="container container--narrow">
+      <h2 class="section-title section-title--light">You don't have a decision problem. You have a judge problem.</h2>
+      <p class="section-intro">Every divorced woman says the same sentence at some point: "It's been months — why is he still in my head?" The honest answer: <strong>because he's still on the committee.</strong></p>
+
+      <article class="pain">
+        <p class="pain__label">Exhibit A — The imagined veto</p>
+        <p>A real opportunity is on the table. Before you can even want it, you hear his reaction. <em>"He'd say I've completely lost it."</em> So it passes. And the next one. Each one "just not the right time."</p>
+      </article>
+
+      <article class="pain">
+        <p class="pain__label">Exhibit B — The approval you never asked for</p>
+        <p>You redraw the house, the city, the career plan — and check every version against how it would land with him. The plan doesn't age. <strong>It expires.</strong></p>
+      </article>
+
+      <article class="pain">
+        <p class="pain__label">Exhibit C — The scoreboard you never signed up for</p>
+        <p>His new life shows up on your screen. Your progress gets measured against a relationship you never agreed to compete in.</p>
+      </article>
+
+      <article class="pain">
+        <p class="pain__label">Exhibit D — The postponed move</p>
+        <p>Listings saved. Interviews researched. Boxes never taped. Nothing changes — and it starts to feel like that's simply who you are now.</p>
+      </article>
+
+      <p class="problem__agitate">Years of decisions made in a courtroom he doesn't even attend — until you realize you built a <strong>smaller, safer life</strong> to avoid the reaction of a man who already left.</p>
+      <p class="problem__bridge">None of this is weakness. It's an unfixed decision process. And there's a specific reason no book, app or program ever removed it.</p>
+
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">CLOSE THE CASE BEFORE YOUR NEXT DECISION — $97</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 4 — SOLUÇÃO -->
+  <section class="solution">
+    <div class="container container--narrow">
+      <h2 class="section-title">Case Closure: the category the industry never sold you.</h2>
+      <p>Books, apps and breakup programs have one thing in common: <strong>they keep you in the process.</strong> None of them exists to end it. Breakup to Breakthrough was built for exactly that — <strong>closing the case.</strong></p>
+      <p>The mechanism: <strong>the Empty Room Test</strong> — 3 questions that remove the audience before you choose. Then, written criteria, set before any big decision. No judge. No committee.</p>
+      <p>By Lesson 3, the pattern has a name. By Lesson 7, your criteria are on paper. By Lesson 10, your next big decision is yours — <strong>in first person.</strong></p>
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">START CASE CLOSURE NOW — $97</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 5 — PRODUTO POR DENTRO + COMO USAR -->
+  <section class="inside">
+    <div class="container">
+      <h2 class="section-title section-title--center">See exactly what you get</h2>
+      <div class="inside__grid">
+        <!-- Imagem: frame de uma aula em vídeo -->
+        <div class="inside__card">
+          <div class="inside__preview inside__preview--video" role="img" aria-label="Video lesson player"></div>
+          <p>Video lessons — the complete Case Closure sequence</p>
+        </div>
+        <!-- Imagem: página do workbook com o Empty Room Test -->
+        <div class="inside__card">
+          <div class="inside__preview inside__preview--workbook" role="img" aria-label="Workbook page with the Empty Room Test questions"></div>
+          <p>The Empty Room Test workbook — filled with your real situation</p>
+        </div>
+        <!-- Imagem: template de critérios escritos -->
+        <div class="inside__card">
+          <div class="inside__preview inside__preview--criteria" role="img" aria-label="Written decision criteria template"></div>
+          <p>Your written criteria — the decision filter, in your words</p>
+        </div>
+      </div>
+      <div class="inside__how">
+        <h3 class="inside__how-title">How you'll use it</h3>
+        <ol class="inside__steps">
+          <li><strong>Watch a short lesson.</strong> One idea per lesson — nothing to binge.</li>
+          <li><strong>Fill the workbook page</strong> for your real situation.</li>
+          <li><strong>Take one action.</strong> Every lesson ends with one.</li>
+        </ol>
+      </div>
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">GET INSTANT ACCESS — $97</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 6 — VALUE STACK -->
+  <section class="value-stack" id="offer">
+    <div class="container">
+      <h2 class="section-title section-title--center">Everything you get in Breakup to Breakthrough</h2>
+
+      <div class="stack stack--main">
+        <p class="stack__label">The course</p>
+        <h3 class="stack__title">Breakup to Breakthrough — the complete 10-lesson video course</h3>
+        <p>The complete Case Closure method: the Empty Room Test, written decision criteria and the closure sequence.</p>
+      </div>
+
+      <div class="stack__grid">
+        <div class="stack stack--bonus">
+          <p class="stack__label">Bonus 01</p>
+          <h3 class="stack__title">The Identity Blueprint</h3>
+          <p>Rebuilds the reference point for your decisions: who you're choosing for when he's no longer the benchmark.</p>
+          <p class="stack__value">$149 value</p>
+        </div>
+        <div class="stack stack--bonus">
+          <p class="stack__label">Bonus 02</p>
+          <h3 class="stack__title">The Decision Audit</h3>
+          <p>A structured audit of your past decisions that shows exactly where his vote entered — and what each one cost.</p>
+          <p class="stack__value">$129 value</p>
+        </div>
+        <div class="stack stack--bonus">
+          <p class="stack__label">Bonus 03</p>
+          <h3 class="stack__title">The Clean Slate Protocol</h3>
+          <p>The execution protocol for your first closed-case decision: home, career or relationship — decided in an empty room.</p>
+          <p class="stack__value">$109 value</p>
+        </div>
+      </div>
+
+      <div class="stack__total">
+        <p class="stack__old">Total value: <s>$387</s></p>
+        <p class="stack__now">Today: <strong>$97</strong> — launch price, goes to <strong>$297</strong> after launch</p>
+        <p class="stack__justify">The complete method, with all 3 bonuses, for less than one session with a mediator. And unlike every alternative on the market, this one is designed <strong>to end — not to continue.</strong></p>
+      </div>
+
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">GET EVERYTHING FOR $97 — INSTEAD OF $387</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 7 — PROVA SOCIAL COMPLETA (depoimentos ilustrativos até receber os reais) -->
+  <section class="proof">
+    <div class="container">
+      <h2 class="section-title section-title--center">Women who closed the case</h2>
+      <div class="proof__grid">
+        <!-- Depoimentos ILUSTRATIVOS (personas do PDF). Substituir por depoimentos reais com autorização de uso antes de publicar com tráfego pago -->
+        <figure class="proof__card">
+          <blockquote>"I chose the apartment in 6 days. Without calling anyone to 'think about it.' First big decision I made without hearing his answer first."</blockquote>
+          <figcaption>— Danielle R., 37 · Atlanta, GA</figcaption>
+        </figure>
+        <figure class="proof__card">
+          <blockquote>"I started dating again without feeling like I was being graded by him. The Empty Room Test changed how I choose in the first weeks."</blockquote>
+          <figcaption>— Bianca M., 29 · Austin, TX</figcaption>
+        </figure>
+        <figure class="proof__card">
+          <blockquote>"Co-parenting decisions stopped being a negotiation with his imagined reaction. I wrote my criteria — and the conversation changed shape."</blockquote>
+          <figcaption>— Renata T., 38 · Denver, CO</figcaption>
+        </figure>
+      </div>
+
+      <div class="proof__science">
+        <p>The mechanism isn't opinion. It's built on published research on post-breakup adjustment and grief processing — including studies by <strong>Eisma et al. (2021)</strong> and <strong>Wrape et al. (2012)</strong>.</p>
+        <p>In 2023 alone, <strong>672,910 divorces</strong> were granted in the United States. Almost every one of those women will make a home, career or love decision in the next 12 months. Almost none will be given a way to close the case first.</p>
+      </div>
+
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">I WANT TO JOIN THEM — $97</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 8 — GARANTIA -->
+  <section class="guarantee">
+    <div class="container container--narrow">
+      <h2 class="section-title section-title--light">Run the Empty Room Test on this decision.</h2>
+      <p>Get Breakup to Breakthrough today. Watch the lessons. Write your criteria. Apply it to the decision in front of you.</p>
+      <p>If within <strong>7 days</strong> you don't feel the difference between a decision made in front of an audience and one made in an empty room — email us. <strong>Full refund.</strong> No forms, no interrogation.</p>
+      <p>A course that teaches evidence-based decisions should survive being tested. <strong>So test it.</strong></p>
+      <div class="guarantee__seal" aria-hidden="true">7-Day<br>Money-Back<br>Guarantee</div>
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">TRY IT RISK-FREE FOR 7 DAYS — $97</a>
+      </div>
+      <p class="disclaimer">Breakup to Breakthrough is an educational program. It is not therapy, and it is not legal or financial advice.</p>
+    </div>
+  </section>
+
+  <!-- BLOCO 9 — URGÊNCIA -->
+  <section class="urgency">
+    <div class="container container--narrow">
+      <h2 class="section-title section-title--center">$97 is the launch price. It is not the price.</h2>
+      <p>Breakup to Breakthrough opens at <strong>$97</strong> while the launch lasts. When it ends, the course plus its bonuses move to <strong>$297</strong> — permanently.</p>
+      <p>There's no fake countdown here. <strong>The deadline is the price itself.</strong> Same method, same lessons, same bonuses — $200 more, forever.</p>
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">LOCK IN THE LAUNCH PRICE — $97</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 10 — FAQ -->
+  <section class="faq" id="faq">
+    <div class="container container--narrow">
+      <h2 class="section-title">Questions worth answering directly.</h2>
+
+      <details class="faq__item">
+        <summary>"I never finish online courses."</summary>
+        <p>Each lesson ends with one action, and Lesson 10 is your first closed-case decision. The finish line is a real decision, not a certificate.</p>
+      </details>
+
+      <details class="faq__item">
+        <summary>"I already bought something like this and regretted it."</summary>
+        <p>Most breakup products sell the process — daily practices, ongoing content, a community you depend on. This is the opposite category: <strong>Case Closure.</strong> Nothing to do daily. No membership. The product is designed to end — because you are.</p>
+      </details>
+
+      <details class="faq__item">
+        <summary>"I don't trust info-products."</summary>
+        <p>Fair. The mechanism is grounded in published research (Eisma et al., 2021; Wrape et al., 2012), the guarantee is 7 days with full refund, and you'll have run the Empty Room Test on a real decision before the week ends. <strong>Evidence before belief.</strong></p>
+      </details>
+
+      <details class="faq__item">
+        <summary>"I need to think about it."</summary>
+        <p>Notice what just happened: a real decision, and someone else's voice offering input. The Empty Room Test applies here too. If nobody was watching, would $97 be an easy decision for a process that ends? If yes, that's your answer. It stays true tomorrow. <strong>The price doesn't.</strong></p>
+      </details>
+
+      <details class="faq__item">
+        <summary>"My divorce was years ago. Is this still for me?"</summary>
+        <p>The filter doesn't expire on its own — that's why women 10 years out still hear the reaction before the choice. Case Closure works at any distance from the divorce, because it intervenes at the decision, <strong>not at the wound.</strong></p>
+      </details>
+
+      <details class="faq__item">
+        <summary>"Is this therapy?"</summary>
+        <p>No. It's an educational program about decision-making — not therapy, not legal or financial advice. If you're in acute crisis or severe grief, work with a licensed therapist first. This course will still be here.</p>
+      </details>
+
+      <details class="faq__item">
+        <summary>"How much time does it actually take?"</summary>
+        <p>Short lessons, plus short writing exercises for your criteria. The writing is the course — it's what removes the judge.</p>
+      </details>
+
+      <details class="faq__item">
+        <summary>"What if it doesn't work for me?"</summary>
+        <p>Then you don't pay. <strong>7 days, full refund, direct email.</strong> The risk is on us — on purpose.</p>
+      </details>
+
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">QUESTIONS ANSWERED — GET IT FOR $97</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOCO 11 — CTA FINAL -->
+  <section class="final-cta">
+    <div class="container container--narrow">
+      <h2 class="section-title section-title--light">Your next home. Your next job. Your next love. <strong>Decide them in an empty room.</strong></h2>
+      <p class="final-cta__oneliner">Breakup to Breakthrough — 10 lessons, 3 bonuses, 7-day guarantee. <strong>$97 today. $297 after launch.</strong></p>
+      <div class="section-cta">
+        <a href="#" class="btn btn--primary btn--large">GET INSTANT ACCESS NOW — $97</a>
+      </div>
+      <p class="microcopy">Instant access · 7-day money-back guarantee · Launch price</p>
+      <div class="stamp stamp--watermark" aria-hidden="true">CASE CLOSED</div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    <div class="container container--narrow">
+      <p>Breakup to Breakthrough is an educational program. It is not therapy, and it is not legal or financial advice.</p>
+      <p>©️ 2026 Breakup to Breakthrough. All rights reserved. · 
+        <a href="#">Terms</a> · <a href="#">Privacy Policy</a> · <a href="#">Contact</a>
+      </p>
+      <!-- TODO: criar páginas reais de Terms, Privacy e Contact antes de publicar com tráfego pago -->
+    </div>
+  </footer>
+
+  <script>
+    // Barra de CTA fixa — aparece após 600px de scroll
+    const stickyBar = document.querySelector('.sticky-cta');
+    if (stickyBar) {
+      window.addEventListener('scroll', () => {
+        stickyBar.classList.toggle('is-visible', window.scrollY > 600);
+      }, { passive: true });
+    }
+
+    // Fade-in-up dos blocos ao entrar na viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('section, header.hero').forEach((el) => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
